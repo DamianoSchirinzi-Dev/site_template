@@ -41,6 +41,7 @@ export default function Header({ heroHeight }: { heroHeight: number }) {
   };
 
   return (
+    <>
     <header
       className={`fixed top-0 left-0 w-full z-50 transition-all duration-200 ease-out ${
         scrolled
@@ -113,29 +114,16 @@ export default function Header({ heroHeight }: { heroHeight: number }) {
           >
             Contact
           </a>
-          {/*         <button
-            aria-label="Toggle theme"
-            onClick={toggleTheme}
-            className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-border/50 hover:bg-muted transition-all duration-300"
-          >
-            {isDark ? <Sun size={16} /> : <Moon size={16} />}
-          </button> */}
         </div>
 
         {/* Mobile */}
         <div className="md:hidden flex items-center gap-2">
-          {/* <button
-            aria-label="Toggle theme"
-            onClick={toggleTheme}
-            className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-border/50 hover:bg-muted transition-all duration-300"
-          >
-            {isDark ? <Sun size={16} /> : <Moon size={16} />}
-          </button> */}
           <button
-            className={`inline-flex h-9 w-9 items-center justify-center transition-all duration-500 ease-out ${
+            className={`inline-flex h-9 w-9 items-center justify-center transition-all duration-300 ease-out ${
               overHero ? "text-white" : "text-gray-900"
             }`}
             onClick={() => setOpen(!open)}
+              aria-label={open ? "Close menu" : "Open menu"}
           >
             <div
               className={`transition-transform duration-300 ease-out ${
@@ -147,27 +135,25 @@ export default function Header({ heroHeight }: { heroHeight: number }) {
           </button>
         </div>
       </nav>
-
-      {/* Animated bottom border */}
-      <span
-        className={`absolute bottom-0 left-0 w-full h-[1px] bg-border 
-          transform origin-top transition-all duration-500 ease-out pointer-events-none
-          ${scrolled ? "scale-y-100 opacity-100" : "scale-y-0 opacity-0"}`}
-      ></span>
+      </header>
 
       <div
-        className={`md:hidden bg-white/95 backdrop-blur-xl border-t border-gray-200/50 overflow-hidden transition-all duration-500 ease-out ${
+        className={`fixed inset-0 z-40 md:hidden transition-all duration-100 ease-in-out ${
           open
-            ? "max-h-96 opacity-100"
-            : "max-h-0 opacity-0 border-t-transparent"
+            ? "translate-y-0 opacity-100 pointer-events-auto"
+            : "opacity-0 pointer-events-none"
         }`}
       >
-        <div className="py-6 flex flex-col items-center gap-6 text-base">
+        {/* Background with backdrop blur */}
+        <div className="absolute inset-0 bg-white/98 backdrop-blur-xl"></div>
+
+        {/* Menu content */}
+        <div className="relative h-full flex flex-col items-center justify-center gap-10 px-6">
           <a
             onClick={() => setOpen(false)}
             href="#about"
-            className={`text-gray-600 hover:text-gray-900 transition-all duration-300 ${
-              open ? "translate-y-0 opacity-100" : "-translate-y-4 opacity-0"
+            className={`text-4xl font-semibold text-gray-900 hover:text-gray-600 transition-all ${
+              open ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0 duration-0"
             }`}
             style={{ transitionDelay: open ? "100ms" : "0ms" }}
           >
@@ -176,35 +162,35 @@ export default function Header({ heroHeight }: { heroHeight: number }) {
           <a
             onClick={() => setOpen(false)}
             href="#gallery"
-            className={`text-gray-600 hover:text-gray-900 transition-all duration-300 ${
-              open ? "translate-y-0 opacity-100" : "-translate-y-4 opacity-0"
+            className={`text-4xl font-semibold text-gray-900 hover:text-gray-600 transition-all ${
+              open ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0 duration-0"
             }`}
-            style={{ transitionDelay: open ? "200ms" : "0ms" }}
+            style={{ transitionDelay: open ? "150ms" : "0ms" }}
           >
             Gallery
           </a>
           <a
             onClick={() => setOpen(false)}
             href="#location"
-            className={`text-gray-600 hover:text-gray-900 transition-all duration-300 ${
-              open ? "translate-y-0 opacity-100" : "-translate-y-4 opacity-0"
+            className={`text-4xl font-semibold text-gray-900 hover:text-gray-600 transition-all ${
+              open ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0 duration-0"
             }`}
-            style={{ transitionDelay: open ? "300ms" : "0ms" }}
+            style={{ transitionDelay: open ? "250ms" : "0ms" }}
           >
             Find Us
           </a>
           <a
             onClick={() => setOpen(false)}
             href="#contact"
-            className={`text-gray-600 hover:text-gray-900 transition-all duration-300 ${
-              open ? "translate-y-0 opacity-100" : "-translate-y-4 opacity-0"
+            className={`inline-flex items-center rounded-full bg-gray-900 text-white px-10 py-4 text-2xl font-semibold transition-all hover:opacity-90 hover:scale-105 ${
+              open ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0 duration-0"
             }`}
-            style={{ transitionDelay: open ? "400ms" : "0ms" }}
+            style={{ transitionDelay: open ? "300ms" : "0ms" }}
           >
             Contact
           </a>
         </div>
       </div>
-    </header>
+    </>
   );
 }
